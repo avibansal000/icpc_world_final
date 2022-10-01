@@ -5,9 +5,24 @@ typedef long long ll;
 typedef vector<ll> vl; 
 typedef vector<int> vi; 
 #include <sys/time.h>
-
+ll expo(ll a, ll b, ll mod = MOD)
+{
+    ll res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = (res * a) % mod;
+        a = (a * a) % mod;
+        b = b >> 1;
+    }
+    return res;
+}
+ll mminvprime(ll a, ll b = MOD)
+{
+    return expo(a, b - 2, b);
+}
 void solve(){
-
+    
 }
 int main(){
     ios_base::sync_with_stdio(0);
