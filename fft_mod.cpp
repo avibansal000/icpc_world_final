@@ -1,22 +1,6 @@
 // works for MOD=998244353
 vl roots(24);
 vl invroots(24);
-ll expo(ll a, ll b, ll mod = MOD)
-{
-    ll res = 1;
-    while (b > 0)
-    {
-        if (b & 1)
-            res = (res * a) % mod;
-        a = (a * a) % mod;
-        b = b >> 1;
-    }
-    return res;
-}
-ll mminvprime(ll a, ll b = MOD)
-{
-    return expo(a, b - 2, b);
-}
 void root_cal()
 {
     ll p = expo(3, 119);
