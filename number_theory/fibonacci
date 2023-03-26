@@ -1,0 +1,3 @@
+F_{n-1} F_{n+1} - F_n^2 = (-1)^n
+F_{n+k} = F_k F_{n+1} + F_{k-1} F_n
+GCD(F_m, F_n) = F_{GCD(m, n)}

@@ -3,7 +3,8 @@ vl roots(24);
 vl invroots(24);
 void root_cal()
 {
-    ll p = expo(3, 119);
+    ll p = expo(3, 119); // 3 primitive_root(988244353) and 988244353= 1+2^23 (119)
+
     for (int i = 23; i >= 0; i--)
     {
         roots[i] = p;
@@ -78,15 +79,9 @@ vector<ll> fft(vector<ll> a, bool invert)
 }
 vector<ll> multiple(vector<ll> a, vector<ll> b)
 {
-
     int n = a.size();
-
     n *= 2;
-    while (__builtin_popcount(n) != 1)
-    {
-        n++;
-    }
-
+    while (__builtin_popcount(n) != 1)n++;
     a.resize(n);
     b.resize(n);
     vector<ll> w1 = fft(a, false);

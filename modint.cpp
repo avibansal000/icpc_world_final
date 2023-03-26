@@ -33,4 +33,3 @@ ostream& operator<<(ostream& os, const mi& val)
     os << (int) val;
     return os;
 }
-
