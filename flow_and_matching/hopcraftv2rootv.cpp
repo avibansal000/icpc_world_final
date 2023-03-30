@@ -1,8 +1,7 @@
 struct bipartite_matching {
+    vector<vector<int>> g;
+    vector<int> match_from_left, match_from_right,dist;
     int n_left, n_right, flow = 0;
-    std::vector<std::vector<int>> g;
-    std::vector<int> match_from_left, match_from_right;
-
     bipartite_matching(int _n_left, int _n_right)
         : n_left(_n_left),
           n_right(_n_right),
@@ -12,11 +11,8 @@ struct bipartite_matching {
           dist(_n_left) {}
 
     void add(int u, int v) { g[u].push_back(v); }
-
-    std::vector<int> dist;
-
     void bfs() {
-        std::queue<int> q;
+        queue<int> q;
         for (int u = 0; u < n_left; ++u) {
             if (!~match_from_left[u])
                 q.push(u), dist[u] = 0;
@@ -33,7 +29,6 @@ struct bipartite_matching {
                 }
         }
     }
-
     bool dfs(int u) {
         for (auto v : g[u])
             if (!~match_from_right[v]) {
@@ -48,7 +43,6 @@ struct bipartite_matching {
             }
         return false;
     }
-
     int get_max_matching() {
         while (true) {
             bfs();
@@ -60,9 +54,8 @@ struct bipartite_matching {
         }
         return flow;
     }
-
-    std::pair<std::vector<int>, std::vector<int>> minimum_vertex_cover() {
-        std::vector<int> L, R;
+    pair<vector<int>, vector<int>> minimum_vertex_cover() {
+        vector<int> L, R;
         for (int u = 0; u < n_left; ++u) {
             if (!~dist[u])
                 L.push_back(u);
@@ -72,8 +65,8 @@ struct bipartite_matching {
         return {L, R};
     }
 
-    std::vector<std::pair<int, int>> get_edges() {
-        std::vector<std::pair<int, int>> ans;
+    vector<pair<int, int>> get_edges() {
+        vector<pair<int, int>> ans;
         for (int u = 0; u < n_left; ++u)
             if (match_from_left[u] != -1)
                 ans.emplace_back(u, match_from_left[u]);
